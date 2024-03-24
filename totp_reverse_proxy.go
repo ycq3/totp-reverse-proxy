@@ -22,7 +22,7 @@ var (
 	loginPage     = `
     <html>
     <body>
-        <form method="POST" action="/login">
+        <form method="POST" action="/_login">
             <input type="text" name="code" placeholder="Enter code">
             <input type="hidden" name="redirect" value="{{.EncodedRedirect}}">
             <input type="submit" value="Login">
@@ -62,7 +62,7 @@ func NewTOTPReverseProxy(addr, secretKey, targetURL string, useHTTPS bool, certF
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path == "/login" && r.Method == "POST" {
+		if r.URL.Path == "/_login" && r.Method == "POST" {
 			code := r.FormValue("code")
 			redirectEncoded := r.FormValue("redirect")
 			redirectURLBytes, err := base64.URLEncoding.DecodeString(redirectEncoded)

@@ -5,18 +5,24 @@ A small go based reverse proxy with support for TLS, TOTP, and logging using ses
 
 In Linux you can generate the TOTP key using following command:
 ```
-    SECRET=$(dd if=/dev/urandom|base64|tr -cd 'A-Z2-7'|head -c30)
+    SECRET=$(dd if=/dev/urandom|base64|tr -cd 'A-Z2-7'|head -c16)
+```
+And for TOTP client like Google Authenticator the QR-code can be generated with help of qrencode tool:
+
+```
+    SERVERNAME=external.myhost.domain
+    qrencode -t ANSI256 -o - "otpauth://totp/user@$SERVERNAME?secret=$SECRET'
 ```
 
 To build and run the proxy:
 
-```                
+```
 go build
 ./totp_reverse_proxy -server $SECRET -upstream http://localhost:8000 &
 ```
 
-The proxy will write the logs to rotated proxy-access.log file.
-To test the TOTP the https://totp.danhersam.com/ can be used.
+The proxy will write the logs to rotated proxy-access.log file.  To
+test the TOTP the https://totp.danhersam.com/ can be used.
 
 The current version of the proxy supports following options:
 
@@ -34,4 +40,4 @@ Usage of ./totp-reverse-proxy:
         TOTP Secret Key
   -upstream string
         Upstream URL
-```            
+```

@@ -1,3 +1,0 @@
-[Proxy] 2024/03/24 17:55:06.536565 Error starting TOTP reverse proxy: listen tcp :9090: bind: address already in use
-[Proxy] 2024/03/24 17:55:32.591951 Error starting TOTP reverse proxy: listen tcp :9090: bind: address already in use
-[Proxy] 2024/03/24 18:00:07.769653 Error starting TOTP reverse proxy: listen tcp :9090: bind: address already in use
