@@ -1,4 +1,4 @@
-module github.com/jusmaki/totp-reverse-proxy
+module totp-reverse-proxy
 
 go 1.21.4
 

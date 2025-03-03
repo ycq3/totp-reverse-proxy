@@ -1,7 +1,14 @@
 # totp-reverse-proxy
-A small go based reverse proxy with support for TLS, TOTP, and logging using session cookies.
+
+A TOTP reverse proxy written in Go.
+
+一个基于 Go 语言编写的TOTP反向代理，支持TLS，使用cookie保持会话。
 
 ## Usage
+
+You can use https://www.pipiqiang.cn/tool/google_code to generate the TOTP key.
+
+你可以访问 https://www.pipiqiang.cn/tool/google_code 来生产二维码
 
 In Linux you can generate the TOTP key using following command:
 ```
@@ -16,9 +23,11 @@ And for TOTP client like Google Authenticator the QR-code can be generated with 
 
 To build and run the proxy:
 
+构建并运行代理
+
 ```
 go build
-./totp_reverse_proxy -server $SECRET -upstream http://localhost:8000 &
+./totp_reverse_proxy -secret $SECRET -upstream http://localhost:8000 &
 ```
 
 The proxy will write the logs to rotated proxy-access.log file.  To
